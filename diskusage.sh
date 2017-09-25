@@ -1,0 +1,1 @@
+df -k | awk -vhostname="$(hostname)" '$6 ~ /hyperstore/ { s2 += $2; s3 += $3; s4 += $4; }END{tb=1024*1024*1024; printf hostname ":" "\t" "Total: %.2fTB\t Used: %.2fTB\t Available:%.2fTB\t Usage(5% System alocation included):%.2f%%\n", s2/tb, s3/tb, s4/tb, 100 * ( 1 - s4/s2);}'
